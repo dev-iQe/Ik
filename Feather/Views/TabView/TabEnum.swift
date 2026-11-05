@@ -1,58 +1,19 @@
-//
-//  TabEnum.swift
-//  feather
-//
-//  Created by samara on 22.03.2025.
-//
+import Foundation
 
-import SwiftUI
-import NimbleViews
+enum TabEnum: String, CaseIterable, Identifiable {
+    case home = "الرئيسية"
+    case sources = "المتجر" // تم تغييرها من المصدر إلى المتجر
+    case library = "المكتبة"
+    case settings = "الإعدادات"
 
-enum TabEnum: String, CaseIterable, Hashable {
-	case sources
-	case library
-	case settings
-	case certificates
-	
-	var title: String {
-		switch self {
-		case .sources:     	return .localized("Sources")
-		case .library: 		return .localized("Library")
-		case .settings: 	return .localized("Settings")
-		case .certificates:	return .localized("Certificates")
-		}
-	}
-	
-	var icon: String {
-		switch self {
-		case .sources: 		return "globe.desk"
-		case .library: 		return "square.grid.2x2"
-		case .settings: 	return "gearshape.2"
-		case .certificates: return "person.text.rectangle"
-		}
-	}
-	
-	@ViewBuilder
-	static func view(for tab: TabEnum) -> some View {
-		switch tab {
-		case .sources: SourcesView()
-		case .library: LibraryView()
-		case .settings: SettingsView()
-		case .certificates: NBNavigationView(.localized("Certificates")) { CertificatesView() }
-		}
-	}
-	
-	static var defaultTabs: [TabEnum] {
-		return [
-			.sources,
-			.library,
-			.settings
-		]
-	}
-	
-	static var customizableTabs: [TabEnum] {
-		return [
-			.certificates
-		]
-	}
+    var id: String { self.rawValue }
+
+    var icon: String {
+        switch self {
+        case .home: return "house.fill"
+        case .sources: return "square.stack.3d.up.fill"
+        case .library: return "square.grid.2x2.fill"
+        case .settings: return "gearshape.fill"
+        }
+    }
 }
