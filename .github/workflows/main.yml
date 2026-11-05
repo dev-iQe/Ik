@@ -15,6 +15,12 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Resolve Package Dependencies
+        run: |
+          xcodebuild -resolvePackageDependencies \
+                     -project Feather.xcodeproj \
+                     -scheme Feather
+
       - name: Build Archive
         run: |
           xcodebuild -project Feather.xcodeproj \
